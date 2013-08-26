@@ -1,0 +1,38 @@
+<head>
+  <title>German-ator++</title>
+  <link href='http://fonts.googleapis.com/css?family=Vollkorn:400italic,400' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+	<div class='container'>
+  	{{> form}}
+  	{{> thumbs}}
+	</div>
+</body>
+
+<template name="form">
+  <form class="form-signin">
+    <h2 class="form-signin-heading">German-ator++</h2>
+    <h3>{{word.english}}</h3>
+    <input type="text" class="form-control arriba" id='word' placeholder="Word" autofocus="">
+    <input type="text" class="form-control abajo" id='plural' placeholder="Plural">
+    <div>
+	    <button class="btn btn-large btn-success check" type="submit">check</button>
+	    <button class="btn btn-large pass">pass</button>
+	  </div>
+  </form>
+</template>
+
+<template name="thumbs">
+  <div class="row">
+    <div class="span4">
+      <img src='http://getbootstrap.com/2.3.2/assets/img/examples/browser-icon-chrome.png' />
+    </div>
+    <div class="span4">
+      <img src='http://getbootstrap.com/2.3.2/assets/img/examples/browser-icon-safari.png' />
+   </div>
+    <div class="span4">
+      <img src='http://getbootstrap.com/2.3.2/assets/img/examples/browser-icon-firefox.png' />
+    </div>
+  </div>
+</template>
