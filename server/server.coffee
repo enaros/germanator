@@ -23,7 +23,7 @@ wordlist = [
     english: 'salat'
   }
   {
-    word: 'dea pfirsich'
+    word: 'der pfirsich'
     plural: 'pfirisiche'
     english: 'peach'
     search: 'peach fruit'
@@ -108,8 +108,7 @@ wordlist = [
     word: 'die paprika'
     plural: 'paprikas'
     english: 'paprika'
-  }
-  
+  }  
 ]
 
 Meteor.startup ->
