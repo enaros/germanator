@@ -6,3 +6,4 @@ Template.bg.events
 		else
 			$('.img').addClass('off').removeClass('on')
 			el.removeClass('off').addClass('on')
+			collection.update { _id: Session.get('word')._id }, $set: { image: el.css('background-image') }

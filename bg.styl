@@ -1,15 +1,28 @@
 .bg
-  height: 100%
-  position: fixed
-  width: 100%
-  top: 0
-  z-index: -1
+	height: 100%
+	position: fixed
+	width: 100%
+	top: 0
+	z-index: -1
 	
 	.img
-	  width: 25%
-	  height: 20%
-	  background-size: cover
-	  float:left
+		width: 25%
+		height: 20%
+		background-size: cover
+		float:left
 
-	  &.off
-	  	opacity: .3
+		&.off
+			opacity: .3
+
+		&.on
+			box-shadow: 0px 0px 40px 10px #777
+			z-index: 1
+			height: 40%
+			position: absolute
+			bottom: 0
+			right: 25%
+
+@media (max-width: 767px)
+	.bg .img.on
+		width: 50%
+		right:0

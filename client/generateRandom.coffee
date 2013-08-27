@@ -1,7 +1,10 @@
 Meteor.subscribe "words", -> generateRandom()
 
+appendBgImage = (item) ->
+  $("<div class='img'/>").css( "background-image", 'url(' + item.media.m + ')' ).appendTo(".bg")
+
 @generateRandom = ->
-  # $('#word').val('').focus() # if desktop
+  $('#word').val('').focus() unless $.browser.mobile
   random = Math.random()
   # console.log collection.find().count(), random
 
@@ -20,7 +23,11 @@ Meteor.subscribe "words", -> generateRandom()
   $.getJSON(flickerAPI, { lang: "en-us", tags: "#{tag}", tagmode: "any", format: "json" }).done (data) ->
     console.log(data)
     $(".bg").empty()
-    $.each data.items, (i, item) -> $("<div class='img'/>").css( "background-image", 'url(' + item.media.m + ')' ).appendTo(".bg")
+    $.each data.items, (i, item) -> appendBgImage(item)
+    appendBgImage(data.items[i-data.items.length]) for i in [data.items.length..20]
+    
+    if randomWord.image
+      $($(".bg .img").addClass('off')[14]).css('background-image', randomWord.image).removeClass('off').addClass 'on'
   
   # param = 
   #   v: '1.0'
