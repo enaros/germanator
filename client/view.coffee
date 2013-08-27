@@ -40,4 +40,5 @@ Template.form.word = ->
 
 Template.form.audio = ->
 	w = Session.get 'word'
+	return unless w
 	encodeURI w.word + '... die ' + w.plural
