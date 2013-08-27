@@ -5,6 +5,12 @@ Template.form.events
 		console.log 'pass'
 		generateRandom()
 
+	'click .i-know-it': (e) ->
+		e.preventDefault()
+		e.stopImmediatePropagation()
+		console.log 'i-know-it'
+		$('.form-signin').toggleClass('flipped')
+
 	'submit form': (e) ->
 		console.log 'submit'
 		e.preventDefault()

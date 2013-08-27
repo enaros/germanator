@@ -25,29 +25,36 @@ Meteor.subscribe "words", -> generateRandom()
     imgcolor: 'white'
     imgsz: 'large'
 
-  url = "https://ajax.googleapis.com/ajax/services/search/images?" + _.reduce(param, ((memo, val, key) -> return "#{memo}&#{key}=#{encodeURIComponent(val)}"), '')
-  # url = 'http://testapi.bigstockphoto.com/2/267773/search/?q=onion'
+  # url = "https://ajax.googleapis.com/ajax/services/search/images?" + _.reduce(param, ((memo, val, key) -> return "#{memo}&#{key}=#{encodeURIComponent(val)}"), '')
+  # # url = 'http://testapi.bigstockphoto.com/2/267773/search/?q=onion'
 
-  if randomWord.images
-    setImages randomWord.images
-  else
-    $.ajax({
-      type: 'GET'
-      url: url
-      async: false
-      jsonpCallback: 'jsonCallback'
-      contentType: "application/json"
-      dataType: 'jsonp'
-      success: (json) -> 
-        console.log json
-        if json.responseData
-          console.log 'yes'
-          res = json.responseData.results
-          collection.update { _id: randomWord._id }, $set: { images: res }
-          setImages res
+  # if randomWord.images
+  #   setImages randomWord.images
+  # else
+  #   $.ajax({
+  #     type: 'GET'
+  #     url: url
+  #     async: false
+  #     jsonpCallback: 'jsonCallback'
+  #     contentType: "application/json"
+  #     dataType: 'jsonp'
+  #     success: (json) -> 
+  #       console.log json
+  #       if json.responseData
+  #         console.log 'yes'
+  #         res = json.responseData.results
+  #         collection.update { _id: randomWord._id }, $set: { images: res }
+  #         setImages res
 
-      error: (e) -> console.log(e.message)
-    })
+  #     error: (e) -> console.log(e.message)
+  #   })
+  tag = randomWord.search or randomWord.english
+  flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+  $.getJSON(flickerAPI, { lang: "en-us", tags: "#{tag}", tagmode: "any", format: "json" }).done (data) ->
+    console.log(data)
+    $(".bg").empty()
+    for i in [1..4]
+      $.each data.items, (i, item) -> $("<div class='img'/>").css( "background-image", 'url(' + item.media.m + ')' ).appendTo(".bg")
 
 setImages = (imgs) ->
   i = $('img')

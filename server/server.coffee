@@ -3,16 +3,19 @@ wordlist = [
     word: 'die mango'
     plural: 'mangos'
     english: 'mango'
+    search: 'mango fruit'
   }
   {
     word: 'die birne'
     plural: 'birnen'
     english: 'pear'
+    search: 'pear fruit'    
   }
   {
     word: 'der apfel'
     plural: 'a:pfel'
     english: 'apple'
+    search: 'apple fruit'
   }
   {
     word: 'der salat'
@@ -23,6 +26,7 @@ wordlist = [
     word: 'dea pfirsich'
     plural: 'pfirisiche'
     english: 'peach'
+    search: 'peach fruit'
   }
   {
     word: 'die gurke'
@@ -53,6 +57,7 @@ wordlist = [
     word: 'die zitrone'
     plural: 'zitronen'
     english: 'lemon'
+    search: 'lemon fruit'
   }
   {
     word: 'die kartoffel'

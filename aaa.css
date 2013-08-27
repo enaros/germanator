@@ -1,23 +1,71 @@
 body {
-  padding-top: 40px;
-  padding-bottom: 40px;
   background-color: #eee;
+  height: 100%;
+  padding:0;
+  margin:0;
+/*  overflow: hidden;*/
+}
+
+.flipcard.back {
+  margin-top:-277px;
+  -webkit-transform: rotateY(-180deg);
+}
+
+.flipcard {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: 1s;
+  transition: 1s;
+  -webkit-transform-style: preserve-3d;
+}
+
+.flipped .front {
+  -webkit-transform: rotateY(180deg);
+}
+
+.flipped .back {
+  -webkit-transform: rotateY(0);
+}
+
+
+.img {
+  width: 12.5%;
+  height: 10%;
+  background-size: cover;
+  float:left;
+}
+
+.bg {
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: -1;
+}
+
+.form-signin {
+  position: relative;
+  -webkit-perspective: 600px;
 }
 
 .form-signin h2, .form-signin h3 {
 	text-align: center; 
 	font-family: Vollkorn;
+  color: #eee;
+  text-shadow: 1px 1px 1px #000;
 }
 
 .form-signin h3 {
 	font-style: italic;
-	color: #555;
 }
 
-.form-signin {
+.flipcard {
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
+  margin-top: 10px;
+  background: rgba(0,0,0,.6);
+  border-radius: 8px;
 }
 .form-signin input[type=text] {
 	width: 100%;
