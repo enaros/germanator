@@ -29,7 +29,7 @@ body {
 
 
 .img {
-  width: 12.5%;
+  width: 25%;
   height: 20%;
   background-size: cover;
   float:left;
@@ -46,7 +46,7 @@ body {
 .form-signin {
   position: relative;
   -webkit-perspective: 600px;
-  padding: 0 30px;
+  padding: 0 10px;
   margin: 0;
 }
 
