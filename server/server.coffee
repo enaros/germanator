@@ -13,7 +13,7 @@ wordlist = [
   }
   {
     word: 'der apfel'
-    plural: 'a:pfel'
+    plural: 'äpfel'
     english: 'apple'
     search: 'apple fruit'
   }
@@ -39,8 +39,8 @@ wordlist = [
     english: 'pea'
   }
   {
-    word: 'der k:ase'
-    plural: 'k:ase'
+    word: 'der käse'
+    plural: 'käse'
     english: 'cheese'
   }
   {
