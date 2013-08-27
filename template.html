@@ -1,0 +1,52 @@
+<head>
+  <title>German-ator++</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Vollkorn:400italic,400' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+  <div class='bg'></div>
+	<div class='container'>
+  	{{> form}}
+	</div>
+</body>
+
+<template name="form">
+  <form class="form-signin">
+    <div class="flipcard front">
+      <h2 class="form-signin-heading">German-ator++</h2>
+      <h3>{{word.english}}</h3>
+      <input type="text" class="form-control arriba" id='word' placeholder="Word" autofocus="">
+      <input type="text" class="form-control abajo" id='plural' placeholder="Plural">
+      <button class="btn btn-large btn-primary i-know-it">I know it</button>
+      <div class='pull-right'>
+  	    <button class="btn btn-large btn-success check" type="submit">check</button>
+  	    <button class="btn btn-large pass">pass</button>
+  	  </div>
+    </div>
+    <div class="flipcard back">
+      <h2 class="form-signin-heading">German-ator++</h2>
+      <h3>{{word.english}}</h3>
+      <h3>{{word.word}}</h3>
+      <h3>{{word.plural}}</h3>
+      <button class="btn btn-large btn-success i-did-know">Yeah, I did</button>
+      <button class="btn btn-large btn-danger pull-right i-didnt-know">:(</button>
+    </div>
+  </form>
+  <audio src="http://www.ispeech.org/p/generic/getaudio?text={{audio}}&voice=eurgermanfemale&speed=0&action=convert"></audio>
+</template>
+
+<template name="thumbs">
+  <div class="row">
+    <div class="span4">
+      <img src='http://getbootstrap.com/2.3.2/assets/img/examples/browser-icon-chrome.png' />
+    </div>
+    <div class="span4">
+      <img src='http://getbootstrap.com/2.3.2/assets/img/examples/browser-icon-safari.png' />
+   </div>
+    <div class="span4">
+      <img src='http://getbootstrap.com/2.3.2/assets/img/examples/browser-icon-firefox.png' />
+    </div>
+  </div>
+</template>

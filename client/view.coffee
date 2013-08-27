@@ -2,14 +2,25 @@ Template.form.events
 	'click .pass': (e) ->
 		e.preventDefault()
 		e.stopImmediatePropagation()
-		console.log 'pass'
 		generateRandom()
 
 	'click .i-know-it': (e) ->
 		e.preventDefault()
 		e.stopImmediatePropagation()
-		console.log 'i-know-it'
 		$('.form-signin').toggleClass('flipped')
+		$('audio')[0].play()
+
+	'click .i-did-know': (e) ->
+		e.preventDefault()
+		e.stopImmediatePropagation()
+		collection.update { _id: Session.get('word')._id }, $inc: { correct: 1 }
+		generateRandom()
+
+	'click .i-didnt-know': (e) ->
+		e.preventDefault()
+		e.stopImmediatePropagation()
+		collection.update { _id: Session.get('word')._id }, $inc: { wrong: 1 }
+		generateRandom()
 
 	'submit form': (e) ->
 		console.log 'submit'
@@ -22,5 +33,11 @@ Template.form.events
 			collection.update { _id: Session.get('word')._id }, $inc: { wrong: 1 }
 		generateRandom()
 
+	'loadedmetadata audio': (e) -> console.log 'emiliano'
+
 Template.form.word = ->
 	Session.get 'word'
+
+Template.form.audio = ->
+	w = Session.get 'word'
+	encodeURI w.word + '... die ' + w.plural
