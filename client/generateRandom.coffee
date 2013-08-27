@@ -1,9 +1,9 @@
 Meteor.subscribe "words", -> generateRandom()
 
 @generateRandom = ->
-  $('#word').val('').focus()
+  # $('#word').val('').focus() # if desktop
   random = Math.random()
-  console.log collection.find().count(), random
+  # console.log collection.find().count(), random
 
   prob = 0
   randomWord = null
@@ -20,8 +20,7 @@ Meteor.subscribe "words", -> generateRandom()
   $.getJSON(flickerAPI, { lang: "en-us", tags: "#{tag}", tagmode: "any", format: "json" }).done (data) ->
     console.log(data)
     $(".bg").empty()
-    for i in [1..1]
-      $.each data.items, (i, item) -> $("<div class='img'/>").css( "background-image", 'url(' + item.media.m + ')' ).appendTo(".bg")
+    $.each data.items, (i, item) -> $("<div class='img'/>").css( "background-image", 'url(' + item.media.m + ')' ).appendTo(".bg")
   
   # param = 
   #   v: '1.0'
