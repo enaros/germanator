@@ -8,13 +8,18 @@ appendBgImage = (item) ->
   random = Math.random()
   # console.log collection.find().count(), random
 
-  prob = 0
-  randomWord = null
-  collection.find().forEach (word) ->
-    return if randomWord
-    prob += word.probability
-    if prob > random
-      randomWord = word
+  # prob = 0
+  # randomWord = null
+  # collection.find().forEach (word) ->
+  #   return if randomWord
+  #   prob += word.probability
+  #   if prob > random
+  #     randomWord = word
+
+  col = collection.find()
+  total = col.count()
+  random = Math.floor(Math.random() * total)
+  randomWord = col.fetch()[random]
 
   Session.set 'word', randomWord
 
