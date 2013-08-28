@@ -1,5 +1,7 @@
 Template.bg.events
 	'click .img' : (e) ->
+		return if window.animation
+		
 		el = $(e.currentTarget)
 		if el.hasClass 'on'
 			$('.img').removeClass('off').removeClass('on')
