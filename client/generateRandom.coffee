@@ -16,7 +16,7 @@ appendBgImage = (item) ->
   #   if prob > random
   #     randomWord = word
 
-  col = collection.find()
+  col = collection.find disabled: { $ne: true }
   total = col.count()
   random = Math.floor(Math.random() * total)
   randomWord = col.fetch()[random]
