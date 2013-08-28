@@ -1,0 +1,59 @@
+<template name="new">
+  <div id="new-edit-word" class="">
+    <form class="form-horizontal">
+      <input type="hidden" name="_id" />
+      <div class="control-group">
+        <label class="control-label" for="word">Word</label>
+        <div class="controls">
+          <input type="text" id="word" name="word" placeholder="Word">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="plural">Plural</label>
+        <div class="controls">
+          <input type="text" id="plural" name="plural" placeholder="Plural">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="translation">Translation</label>
+        <div class="controls">
+          <input type="text" id="translation" name="english" placeholder="Translation">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="search">Search</label>
+        <div class="controls">
+          <input type="text" id="search" name="search" placeholder="Search">
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="controls">
+          <!-- <label class="checkbox">
+            <input type="checkbox"> Remember me
+          </label> -->
+          <button type="submit" class="btn btn-primary add-button"><i class="icon-plus-sign icon-white"></i> Add</button>
+          <button type="submit" class="btn btn-primary edit-button"><i class="icon-pencil icon-white"></i> Edit</button>
+          <button class="btn btn-danger delete-button"><i class="icon-trash icon-white"></i></button>
+          <button class="btn cancel-button">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</template>
+
+<template name="list">
+  <div id="list" class="show">
+    {{> new}}
+    {{#constant}}
+    <form class="form-search">
+      <div class="input-append search-box">
+        <input type="text" class="search-query">
+        <button type="submit" class="btn btn-success"><i class="icon-plus"></i> Add new</button>
+      </div>
+    </form>
+    {{/constant}}
+    {{#each list}}
+      <div class="list-item {{disabled this}}">{{word}}</div>
+    {{/each}}
+  </div>
+</template>
