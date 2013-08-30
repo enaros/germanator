@@ -16,13 +16,20 @@ appendBgImage = (item) ->
   #   if prob > random
   #     randomWord = word
 
-  col = collection.find disabled: { $ne: true }
-  total = col.count()
-  random = Math.floor(Math.random() * total)
-  randomWord = col.fetch()[random]
-
+  randomWord = collection.findOne {
+      disabled: { $ne: true }
+      expirationDate: { $lte: new Date().getTime() }
+    },
+    sort:
+      # interval: 1
+      expirationDate: 1
+  # total = col.count()
+  # random = Math.floor(Math.random() * total)
+  # randomWord = col.fetch()[random]
+  
   Session.set 'word', randomWord
-
+  return unless randomWord
+  
   tag = randomWord.search or randomWord.english
   flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
   $.getJSON(flickerAPI, { lang: "en-us", tags: "#{tag}", tagmode: "any", format: "json" }).done (data) ->

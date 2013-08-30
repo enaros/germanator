@@ -1,3 +1,6 @@
+exponentiationBase = 3 # milliseconds
+minute = 30*1000
+
 Template.form.events
 	'click .pass': (e) ->
 		e.preventDefault()
@@ -13,13 +16,13 @@ Template.form.events
 	'click .i-did-know': (e) ->
 		e.preventDefault()
 		e.stopImmediatePropagation()
-		collection.update { _id: Session.get('word')._id }, $inc: { correct: 1 }
+		didIGuess(true)
 		generateRandom()
 
 	'click .i-didnt-know': (e) ->
 		e.preventDefault()
 		e.stopImmediatePropagation()
-		collection.update { _id: Session.get('word')._id }, $inc: { wrong: 1 }
+		didIGuess(false)
 		generateRandom()
 
 	'submit form': (e) ->
@@ -27,10 +30,10 @@ Template.form.events
 		e.preventDefault()
 		if $('#word').val() is Session.get('word').word
 			alert 'yessss'
-			collection.update { _id: Session.get('word')._id }, $inc: { correct: 1 }
+			didIGuess(true)
 		else
 			alert 'NEIN!!!!:' + Session.get('word').word
-			collection.update { _id: Session.get('word')._id }, $inc: { wrong: 1 }
+			didIGuess(false)
 		generateRandom()
 
 	'loadedmetadata audio': (e) -> console.log 'emiliano'
@@ -42,3 +45,27 @@ Template.form.audio = ->
 	w = Session.get 'word'
 	return unless w
 	encodeURI w.word + '... die ' + w.plural
+
+
+didIGuess = (guess) ->
+	w = Session.get('word')
+	now = new Date().getTime()
+
+	if guess
+		w.interval *= exponentiationBase
+	else
+		w.interval /= exponentiationBase
+	
+	w.expirationDate = Math.round(now + minute + ((w.interval * 1000) * (Math.random() * 0.4 - 0.2)))
+
+	console.log 'will show in the next X seconds', (w.expirationDate-now)/1000
+
+	wrongOrRight = if (guess) then { correct: 1 } else { wrong: 1 }
+
+	collection.update({ _id: w._id }, { 
+		$inc: wrongOrRight
+		$set: { 
+			interval: w.interval
+			expirationDate: w.expirationDate
+		}
+	})
